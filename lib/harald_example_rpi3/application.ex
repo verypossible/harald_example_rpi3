@@ -24,8 +24,9 @@ defmodule HaraldExampleRpi3.Application do
 
   def children(_target) do
     [
-      # Starts a worker by calling: HaraldExampleRpi3.Worker.start_link(arg)
-      # {HaraldExampleRpi3.Worker, arg},
+      {Harald.Transport,
+       namespace: :green_llama,
+       adapter: {Harald.Transport.UART, device: "/dev/ttyAMA0", uart_opts: [speed: 115_200]}}
     ]
   end
 end
